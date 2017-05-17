@@ -1,4 +1,4 @@
-var app = angular.module('RecipeApp', ['ui.router', 'RecipeCtrls']);
+var app = angular.module('AddApp', ['ui.router', 'AddCtrls']);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
         function($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -7,20 +7,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
             $stateProvider
                 .state('home', {
                     url: '/',
-                    templateUrl: 'app/views/recipes.html',
+                    templateUrl: 'app/views/add.html',
                     controller: 'HomeCtrl'
                 })
-                .state('newRecipe', {
-                    url: '/recipes/new',
-                    templateUrl: 'app/views/newRecipe.html',
-                    controller: 'NewCtrl'
-                })
-                .state('recipeShow', {
-                    url: '/recipes/:id',
-                    templateUrl: 'app/views/showRecipe.html',
-                    controller: 'ShowCtrl'
-                })
-                .state('signup', {
+
+            .state('signup', {
                     url: '/signup',
                     templateUrl: 'app/views/userSignup.html',
                     controller: 'SignupCtrl'

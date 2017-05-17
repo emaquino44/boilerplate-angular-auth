@@ -1,39 +1,39 @@
-angular.module('RecipeCtrls', ['RecipeServices'])
-    .controller('HomeCtrl', ['$scope', 'Recipe', function($scope, Recipe) {
-        $scope.recipes = [];
+angular.module('MyCtrls', ['MyServices'])
+    .controller('HomeCtrl', ['$scope', 'Add', function($scope, Add) {
+        $scope.add = [];
 
-        Recipe.query(function success(data) {
-            $scope.recipes = data;
+        add.query(function success(data) {
+            $scope.add = data;
         }, function error(data) {
             console.log(data);
         });
 
-        $scope.deleteRecipe = function(id, recipesIdx) {
-            Recipe.delete({ id: id }, function success(data) {
-                $scope.recipes.splice(recipesIdx, 1);
+        $scope.deleteADD = function(id, addIdx) {
+            Add.delete({ id: id }, function success(data) {
+                $scope.add.splice(addIdx, 1);
             }, function error(data) {
                 console.log(data);
             });
         };
     }])
-    .controller('ShowCtrl', ['$scope', '$stateParams', 'Recipe', function($scope, $stateParams, Recipe) {
+    .controller('ShowCtrl', ['$scope', '$stateParams', 'Add', function($scope, $stateParams, Add) {
         $scope.recipe = {};
 
-        Recipe.get({ id: $stateParams.id }, function success(data) {
-            $scope.recipe = data;
+        Add.get({ id: $stateParams.id }, function success(data) {
+            $scope.add = data;
         }, function error(data) {
             console.log(data);
         });
     }])
-    .controller('NewCtrl', ['$scope', '$location', 'Recipe', function($scope, $location, Recipe) {
-        $scope.recipe = {
+    .controller('NewCtrl', ['$scope', '$location', 'Add', function($scope, $location, Add) {
+        $scope.add = {
             title: '',
             description: '',
             image: ''
         };
 
-        $scope.createRecipe = function() {
-            Recipe.save($scope.recipe, function success(data) {
+        $scope.createAdd = function() {
+            Add.save($scope.add, function success(data) {
                 $location.path('/');
             }, function error(data) {
                 console.log(data);
